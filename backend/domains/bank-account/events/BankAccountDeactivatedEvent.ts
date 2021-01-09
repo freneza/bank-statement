@@ -1,5 +1,5 @@
 import BaseEvent from '../../BaseEvent';
-import { BankAccount } from '../BankAccount';
+import { BankAccount } from '../read/BankAccount';
 
 export interface BankAccountDeactivationParams {
   deactivatedAt: Date;
@@ -11,7 +11,7 @@ export class BankAccountDeactivatedEvent extends BaseEvent<
   static readonly eventName = 'account-deactivated';
 
   constructor(data: BankAccountDeactivationParams) {
-    super(BankAccountDeactivatedEvent.eventName, data);
+    super(data);
   }
 
   static commit(

@@ -1,6 +1,6 @@
 import BaseEvent from '../../BaseEvent';
 import { Transaction } from '../../value-objects/Transaction';
-import { BankAccount } from '../BankAccount';
+import { BankAccount } from '../read/BankAccount';
 
 export interface DepositParams {
   value: number;
@@ -8,10 +8,9 @@ export interface DepositParams {
 }
 
 export class DepositMadeEvent extends BaseEvent<DepositParams> {
-  static readonly eventName = 'deposit-made';
 
   constructor(data: DepositParams) {
-    super(DepositMadeEvent.eventName, data);
+    super(data);
   }
 
   static commit(state: BankAccount, event: DepositMadeEvent): BankAccount {

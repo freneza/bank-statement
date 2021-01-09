@@ -1,21 +1,16 @@
-import { ObjectId } from 'mongodb';
-
 export interface IEvent<TData> {
-  _id: any;
-  name: string;
+  type: string;
   data: TData;
   timestamp: Date;
 }
 
 export default class BaseEvent<TData> implements IEvent<TData> {
-  readonly _id: any;
-  readonly name: string;
+  readonly type: string;
   readonly data: TData;
   readonly timestamp: Date;
 
-  constructor(name: string, data: TData, id?: string) {
-    this._id = id || new ObjectId();
-    this.name = name;
+  constructor(data: TData) {
+    this.type = data.constructor.name;
     this.data = data;
     this.timestamp = new Date();
   }

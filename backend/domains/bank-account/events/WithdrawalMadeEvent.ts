@@ -1,6 +1,6 @@
 import BaseEvent from '../../BaseEvent';
 import { Transaction } from '../../value-objects/Transaction';
-import { BankAccount } from '../BankAccount';
+import { BankAccount } from '../read/BankAccount';
 
 export interface WithdrawalParams {
   value: number;
@@ -11,7 +11,7 @@ export class WithdrawalMadeEvent extends BaseEvent<WithdrawalParams> {
   static readonly eventName = 'withdrawal-made';
 
   constructor(data: WithdrawalParams) {
-    super(WithdrawalMadeEvent.eventName, data);
+    super(data);
   }
 
   static commit(state: BankAccount, event: WithdrawalMadeEvent): BankAccount {
